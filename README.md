@@ -12,4 +12,8 @@ Steps
 4. Create Physical DB using DBMigrations, using Dependancy injection.(see the commit for the changes)
    -Specify DB Provider in Startup.cs(Sql server, mysql,etc)
    -Add missing Nuget package: Microsoft.EntityFrameworkCore.SqlServer
-   -Add connection string
+   -Add connection string in appSettings.json
+   -Run command: Add-Migration "initialDB"
+   -Run Command: Update-Databse
+   -The physical database will be created in SQL server
+   
