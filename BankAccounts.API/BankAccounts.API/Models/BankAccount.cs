@@ -9,6 +9,7 @@ namespace BankAccounts.API.Models
 {
     public class BankAccount
     {
+        [Key]
         public int BankAccountID { get; set; }
         [Required]
         [Column(TypeName ="nvarchar(20)")]
