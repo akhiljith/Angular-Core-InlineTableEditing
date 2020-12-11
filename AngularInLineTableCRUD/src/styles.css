@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+.css-grid-table,
+.css-grid-table-header,
+.css-grid-table-body {
+display: grid;
+}
+
+.css-grid-table {
+grid-template-rows: 24px 72px;
+width: 100%;
+}
+
+.css-grid-table-header,
+.css-grid-table-body {
+grid-template-columns: auto auto auto minmax(150px, 25%);
+line-height: 24px; 
+}
+
+.css-grid-table-header {
+grid-column-gap: 2px;
+grid-template-rows: auto;
+}
+
+.css-grid-table-body {
+grid-template-rows: auto auto auto; 
+}
+
+.css-grid-table-body div {
+      float: left;
+    text-align: center;
+    margin: 5px;
+    }
+
+   
+.css-grid-table-header div {
+text-align: center;
+font-weight: bold;
+background-color: rgb(191, 191, 191);
+}

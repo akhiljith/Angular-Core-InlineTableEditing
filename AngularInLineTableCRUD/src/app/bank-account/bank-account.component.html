@@ -1,0 +1,26 @@
+<div class="css-grid-table">
+
+    <div class="css-grid-table-header">
+    <div>Account no</div>
+    <div>Account holder</div>
+    <div>Bank</div>
+    <div>IFSC</div>
+    </div>
+    
+    <div >
+        <form class="css-grid-table-body" [formGroup] = "fg"  *ngFor="let fg of bankAccountForms.controls">
+        <div > 
+            <input type="text"   formControlName="accountNumber" >
+        </div>
+        <div >
+            <input type="text"   formControlName="accountHolder" >
+        </div>
+        <div >
+            <input type="text"   formControlName="bankID" >
+        </div>
+        <div >
+            <input type="text"   formControlName="IFSC" >
+        </div>
+    </form>
+    </div>
+    </div>

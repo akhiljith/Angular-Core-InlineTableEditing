@@ -1,11 +1,11 @@
 src
-   app
-       bankaccount
-          bankaccount.component.cs|html
+    app
+        bankaccount
+          bank-account.component.cs|html
 
-        shared
+        shared 
           bank.service.ts
-          bankaccount.service.ts
+          bank-account.service.ts
     app.module.ts
 
   index.html (cdn path for bootstrap)          
