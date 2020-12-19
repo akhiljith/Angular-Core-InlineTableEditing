@@ -22,7 +22,7 @@ namespace BankAccounts.API.Controllers
         [HttpGet]
         public IEnumerable<Bank> Get()
         {
-            return _context.Banks;
+            return _context.Banks.ToList();
         }
 
         // GET api/<BanksController>/5

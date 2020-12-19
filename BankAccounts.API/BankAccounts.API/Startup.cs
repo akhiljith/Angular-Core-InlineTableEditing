@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore.SqlServer; 
 using Microsoft.Extensions.Configuration;
 
 namespace BankAccounts.API
@@ -28,6 +28,7 @@ namespace BankAccounts.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest); 
             services.AddDbContext<APIDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,15 +39,23 @@ namespace BankAccounts.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(options=>options.WithOrigins("http://localhost:333").AllowAnyMethod().AllowAnyHeader());
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapGet("/", async context =>
+            //    {
+            //        await context.Response.WriteAsync("Hello World!");
+            //    });
+            //});
         }
     }
 }
