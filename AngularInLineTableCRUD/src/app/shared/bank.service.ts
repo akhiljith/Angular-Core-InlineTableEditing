@@ -11,5 +11,5 @@ export class BankService {
 
   getBankList(){
      return this.http.get(environment.apiBaseUrl+"/Banks");
-  }
+  } 
 }

@@ -37,3 +37,17 @@ text-align: center;
 font-weight: bold;
 background-color: rgb(191, 191, 191);
 }
+
+input.ng-pristine, select.ng-pristine {
+  border-color:grey;
+}
+
+input.ng-touched.ng-invalid , select.ng-touched.ng-invalid {
+  border-color:red;
+}
+
+input.ng-touched.ng-valid, select.ng-touched.ng-valid {
+  border-color:green;
+}
+
+ 
