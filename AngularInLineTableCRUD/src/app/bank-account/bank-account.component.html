@@ -1,3 +1,5 @@
+<h2>My Bank accounts</h2>
+
 <div class="css-grid-table">
 
     <div class="css-grid-table-header">
@@ -5,10 +7,12 @@
     <div>Account holder</div>
     <div>Bank</div>
     <div>IFSC</div>
+    <div><button (click)="addBankAccountForms()" ><i class="far fa-plus-square fa-lg"></i> Add New</button></div>
     </div>
     
     <div >
-        <form class="css-grid-table-body" [formGroup] = "fg"  *ngFor="let fg of bankAccountForms.controls">
+        <form class="css-grid-table-body" [formGroup] = "fg"  *ngFor="let fg of bankAccountForms.controls"
+        (submit) = "recordSubmit(fg)">
         <div > 
             <input type="text"   formControlName="accountNumber" >
         </div>
@@ -23,6 +27,9 @@
         </div>
         <div >
             <input type="text"   formControlName="IFSC" >
+        </div>
+        <div>
+            <button [disabled]="fg.invalid" type="submit"><i class="far fa-save fa-lg"></i> Submit</button>
         </div>
     </form>
     </div>

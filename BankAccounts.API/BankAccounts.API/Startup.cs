@@ -28,7 +28,7 @@ namespace BankAccounts.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest); 
             services.AddDbContext<APIDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
