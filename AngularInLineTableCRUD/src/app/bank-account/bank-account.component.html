@@ -7,29 +7,33 @@
     <div>Account holder</div>
     <div>Bank</div>
     <div>IFSC</div>
-    <div><button (click)="addBankAccountForms()" ><i class="far fa-plus-square fa-lg"></i> Add New</button></div>
+    <div><button (click)="addBankAccountForms()" class="btn btn-info btn-sm" ><i class="far fa-plus-square fa-lg"></i> Add New</button></div>
     </div>
     
     <div >
         <form class="css-grid-table-body" [formGroup] = "fg"  *ngFor="let fg of bankAccountForms.controls"
         (submit) = "recordSubmit(fg)">
         <div > 
-            <input type="text"   formControlName="accountNumber" >
+            <input type="text" class="form-control"  formControlName="accountNumber" >
         </div>
         <div >
-            <input type="text"   formControlName="accountHolder" >
+            <input type="text" class="form-control"  formControlName="accountHolder" >
         </div>
         <div >
-            <select type="text"   formControlName="bankID" >
+            <select type="text" class="form-control"  formControlName="bankID" >
                 <option value="0">Select</option>
             <option *ngFor="let item of bankList" value="{{item.bankID}}">{{item.bankName}}</option>    
             </select>
         </div>
         <div >
-            <input type="text"   formControlName="IFSC" >
+            <input type="text"  class="form-control" formControlName="IFSC" >
         </div>
         <div>
-            <button [disabled]="fg.invalid" type="submit"><i class="far fa-save fa-lg"></i> Submit</button>
+            <button [disabled]="fg.invalid" class="btn" type="submit"
+            [ngClass]="(fg.get('bankAccountID').value == 0)? 'btn-success': 'btn-outline-dark'"><i class="far fa-save fa-lg"></i>
+                {{fg.get('bankAccountID').value == 0 ? 'Submit' : 'Update'}}</button>
+
+                <!-- <button   class="btn" type="button" ><i class="far fa-trash fa-lg"></i>Delete</button> -->
         </div>
     </form>
     </div>

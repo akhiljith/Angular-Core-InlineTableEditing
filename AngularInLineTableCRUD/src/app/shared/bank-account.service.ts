@@ -18,4 +18,14 @@ export class BankAccountService {
   {
     return this.http.get(environment.apiBaseUrl+'/BankAccount');
   }
+
+  putBankAccount(formData)
+  {
+    return this.http.put(environment.apiBaseUrl+'/BankAccount',formData);
+  }
+
+  deleteBankAccount(id)
+  {
+    return this.http.delete(environment.apiBaseUrl+'/BankAccount',id);
+  }
 }

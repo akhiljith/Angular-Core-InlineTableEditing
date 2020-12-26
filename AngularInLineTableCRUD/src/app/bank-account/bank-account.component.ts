@@ -16,25 +16,8 @@ export class BankAccountComponent implements OnInit {
 
   ngOnInit() {
     this.bankService.getBankList().subscribe(res=>this.bankList=res as []);
-    this.service.getBankAccountList().subscribe(
-      res => {
-        if(res==[])
-        {
-          this.addBankAccountForms();
-        }
-        else{
-          (res as []).forEach((bankAccount:any) => {
-            this.bankAccountForms.push(this.fb.group({
-              bankAccountID:[bankAccount.bankAccountID],
-              accountNumber:[bankAccount.accountNumber,Validators.required],
-              accountHolder:[bankAccount.accountHolder,Validators.required],
-              bankID:[bankAccount.bankID,Validators.min(1)],
-              IFSC:[bankAccount.iFSC,Validators.required] 
-            }));
-          });
-        }
-      }
-    );
+    this.getBankAccountList();
+
   }
 addBankAccountForms(){
   this.bankAccountForms.push(this.fb.group({
@@ -46,10 +29,53 @@ addBankAccountForms(){
   }));
 }
 
+getBankAccountList()
+{
+  this.service.getBankAccountList().subscribe(
+    res => {
+      if(res==[])
+      {
+        this.addBankAccountForms();
+      }
+      else{
+        (res as []).forEach((bankAccount:any) => {
+          this.bankAccountForms.push(this.fb.group({
+            bankAccountID:[bankAccount.bankAccountID],
+            accountNumber:[bankAccount.accountNumber,Validators.required],
+            accountHolder:[bankAccount.accountHolder,Validators.required],
+            bankID:[bankAccount.bankID,Validators.min(1)],
+            IFSC:[bankAccount.iFSC,Validators.required] 
+          }));
+        });
+      }
+    }
+  );
+}
+
 recordSubmit(fg:FormGroup){
-this.service.postBankAccount(fg.value)
-.subscribe((res:any)=> {
-  fg.patchValue({bankAccountID:res.bankAccountID});
-});
+  if(fg.get("bankAccountID").value == 0)
+  {
+    this.service.postBankAccount(fg.value)
+    .subscribe((res:any)=> {
+    fg.patchValue({bankAccountID:res.bankAccountID});
+    });
+  }
+  else
+  {
+    this.service.putBankAccount(fg.value)
+    .subscribe((res:any)=> {
+       // show notifications
+    });
+  }
 }
+
+deleteRecord(fg:FormGroup)
+{
+  this.service.deleteBankAccount(fg.get("bankAccountID").value)
+    .subscribe((res:any)=> {
+     //
+    });
 }
+
+}
+ 

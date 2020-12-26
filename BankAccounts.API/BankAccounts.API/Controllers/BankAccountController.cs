@@ -50,9 +50,19 @@ namespace BankAccounts.API.Controllers
         }
 
         // PUT api/<BankAccountController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<ActionResult<BankAccount>> Put(BankAccount bankAccount)
         {
+            try
+            {
+                _context.Entry(bankAccount).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("Get", new { id = bankAccount.BankAccountID });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         // DELETE api/<BankAccountController>/5
