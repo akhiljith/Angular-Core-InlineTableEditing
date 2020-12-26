@@ -67,8 +67,19 @@ namespace BankAccounts.API.Controllers
 
         // DELETE api/<BankAccountController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<BankAccount>> Delete(int id)
         {
+            try
+            {
+                BankAccount bankAccount = _context.BankAccounts.Find(id);
+                _context.Entry(bankAccount).State = EntityState.Deleted;
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("Get", new { id = bankAccount.BankAccountID });
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

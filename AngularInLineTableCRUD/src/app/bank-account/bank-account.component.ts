@@ -69,11 +69,11 @@ recordSubmit(fg:FormGroup){
   }
 }
 
-deleteRecord(fg:FormGroup)
+deleteRecord(fg:FormGroup,index:any)
 {
   this.service.deleteBankAccount(fg.get("bankAccountID").value)
     .subscribe((res:any)=> {
-     //
+     this.bankAccountForms.removeAt(index);
     });
 }
 

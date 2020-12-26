@@ -26,6 +26,6 @@ export class BankAccountService {
 
   deleteBankAccount(id)
   {
-    return this.http.delete(environment.apiBaseUrl+'/BankAccount',id);
+    return this.http.delete(environment.apiBaseUrl+'/BankAccount/'+id);
   }
 }

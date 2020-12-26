@@ -11,7 +11,7 @@
     </div>
     
     <div >
-        <form class="css-grid-table-body" [formGroup] = "fg"  *ngFor="let fg of bankAccountForms.controls"
+        <form class="css-grid-table-body" [formGroup] = "fg"  *ngFor="let fg of bankAccountForms.controls; let i = index;"
         (submit) = "recordSubmit(fg)">
         <div > 
             <input type="text" class="form-control"  formControlName="accountNumber" >
@@ -33,7 +33,9 @@
             [ngClass]="(fg.get('bankAccountID').value == 0)? 'btn-success': 'btn-outline-dark'"><i class="far fa-save fa-lg"></i>
                 {{fg.get('bankAccountID').value == 0 ? 'Submit' : 'Update'}}</button>
 
-                <!-- <button   class="btn" type="button" ><i class="far fa-trash fa-lg"></i>Delete</button> -->
+               <button type="button" class="btn btn-light mi-1" style="margin-left: 5px;" (click)="deleteRecord(fg,i)">
+                   <i class="far fa-trash-alt fa-sm text-danger"></i>
+               </button>
         </div>
     </form>
     </div>
