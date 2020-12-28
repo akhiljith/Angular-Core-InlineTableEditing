@@ -8,7 +8,12 @@
     <div>Bank</div>
     <div>IFSC</div>
     <div><button (click)="addBankAccountForms()" class="btn btn-info btn-sm" ><i class="far fa-plus-square fa-lg"></i> Add New</button></div>
+    <div style="background-color: white !important;"> 
+    <span *ngIf="notification" class="fadeInAndOut" >
+        <i class="fas fa-check-circle {{notification.class}}"></i> {{notification.message}}
+    </span> 
     </div>
+</div>
     
     <div >
         <form class="css-grid-table-body" [formGroup] = "fg"  *ngFor="let fg of bankAccountForms.controls; let i = index;"

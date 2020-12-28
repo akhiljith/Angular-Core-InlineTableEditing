@@ -12,6 +12,7 @@ export class BankAccountComponent implements OnInit {
 
   bankAccountForms:FormArray = this.fb.array([]);
   bankList = [];
+  notification = null;
   constructor(private fb: FormBuilder, private bankService:BankService, private service:BankAccountService) { }
 
   ngOnInit() {
@@ -61,13 +62,14 @@ recordSubmit(fg:FormGroup){
     this.service.postBankAccount(fg.value)
     .subscribe((res:any)=> {
     fg.patchValue({bankAccountID:res.bankAccountID});
+    this.showNotification('insert');
     });
   }
   else
   {
     this.service.putBankAccount(fg.value)
     .subscribe((res:any)=> {
-       // show notifications
+      this.showNotification('update');
     });
   }
 }
@@ -83,8 +85,28 @@ deleteRecord(fg:FormGroup,index:any)
   this.service.deleteBankAccount(fg.get("bankAccountID").value)
     .subscribe((res:any)=> {
      this.bankAccountForms.removeAt(index);
+     this.showNotification('delete');
     });
 }
+}
+
+showNotification(type)
+{
+  switch(type)
+  {
+    case 'insert': 
+    this.notification = {class:'text-success' , message:'saved!'};
+    break;
+    case 'update': 
+    this.notification = {class:'text-primary' , message:'updated!'};
+    break;
+    case 'delete': 
+    this.notification = {class:'text-danger' , message:'deleted!'};
+    break;
+    default: 
+    break;
+  }
+  setTimeout(()=>{this.notification = null; },3000);
 }
 }
  

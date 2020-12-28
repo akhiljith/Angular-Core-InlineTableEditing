@@ -12,7 +12,7 @@ width: 100%;
 
 .css-grid-table-header,
 .css-grid-table-body {
-grid-template-columns: auto auto auto auto minmax(100px, 20%);
+grid-template-columns: auto auto auto auto auto minmax(100px, 20%);
 line-height: 24px; 
 }
 
@@ -51,4 +51,16 @@ input.ng-touched.ng-valid, select.ng-touched.ng-valid {
   border-color:green;
 }
 
- 
+ .fadeInAndOut{
+   -webkit-animation: fadeinout 5s linear forwards;
+   animation: fadeinout 5s linear forwards;
+   opacity:0;
+  }
+
+  @-webkit-keyframes fadeinout{ 
+    50% { opacity:1; }
+  }
+
+  @keyframes fadeinout{ 
+    50% { opacity:1; }
+  }
