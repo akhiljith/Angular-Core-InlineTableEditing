@@ -1,19 +1,14 @@
 # Angular-Core-InlineTableEditing
 
-This project is to learn Angular and .Net Core WebApi
+This project is to learn Angular8 and ASP.Net Core WebApi.
+
+Description: This is a simple web application which allows us to store bank account details. Also provides update and delete operation over the account details.
 
 VS 2019,
-ASP.Net Core 3.1
+ASP.Net Core 3.1,
+npm : 6.9.0,
+Angular/cli : 8.0.6,
+typescript:3.4.5
+etc.
 
-Steps
-1. Create API project
-2. Add Model classes
-3. Create a new class for DBContext, add DbSets in the context.
-4. Create Physical DB using DBMigrations, using Dependancy injection.(see the commit for the changes)
-   -Specify DB Provider in Startup.cs(Sql server, mysql,etc)
-   -Add missing Nuget package: Microsoft.EntityFrameworkCore.SqlServer
-   -Add connection string in appSettings.json
-   -Run command: Add-Migration "initialDB"
-   -Run Command: Update-Databse
-   -The physical database will be created in SQL server
    
