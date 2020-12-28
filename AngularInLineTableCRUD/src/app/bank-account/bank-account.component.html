@@ -33,7 +33,8 @@
             [ngClass]="(fg.get('bankAccountID').value == 0)? 'btn-success': 'btn-outline-dark'"><i class="far fa-save fa-lg"></i>
                 {{fg.get('bankAccountID').value == 0 ? 'Submit' : 'Update'}}</button>
 
-               <button type="button" class="btn btn-light mi-1" style="margin-left: 5px;" (click)="deleteRecord(fg,i)">
+               <button type="button" class="btn btn-light mi-1" style="margin-left: 5px;"
+                (click)="deleteRecord(fg,i)"  >
                    <i class="far fa-trash-alt fa-sm text-danger"></i>
                </button>
         </div>

@@ -19,7 +19,9 @@ export class BankAccountComponent implements OnInit {
     this.getBankAccountList();
 
   }
-addBankAccountForms(){
+addBankAccountForms(){ 
+  if(this.bankAccountForms.controls.findIndex(item=>item.get("bankAccountID").value ===0) < 0)
+  {
   this.bankAccountForms.push(this.fb.group({
     bankAccountID:[0],
     accountNumber:['',Validators.required],
@@ -27,6 +29,7 @@ addBankAccountForms(){
     bankID:[0,Validators.min(1)],
     IFSC:['',Validators.required] 
   }));
+}
 }
 
 getBankAccountList()
@@ -71,11 +74,17 @@ recordSubmit(fg:FormGroup){
 
 deleteRecord(fg:FormGroup,index:any)
 {
+  if(fg.get("bankAccountID").value == 0)
+  {
+    this.bankAccountForms.removeAt(index);
+  }
+  else if(confirm("Are you sure to delete this record?"))
+  {
   this.service.deleteBankAccount(fg.get("bankAccountID").value)
     .subscribe((res:any)=> {
      this.bankAccountForms.removeAt(index);
     });
 }
-
+}
 }
  
